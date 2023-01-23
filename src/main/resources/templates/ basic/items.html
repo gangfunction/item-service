@@ -46,6 +46,19 @@
       </tbody>
     </table>
   </div>
+  <div>등록지역</div>
+  <div th:each="region : ${regions}" class="form-check form-check-inline">
+    <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class ="form-check-input" disabled/>
+
+  </div>
+  <div>
+    <div>배송방식</div>
+    <select th:field = "*{deliveryCode}" class = "form-select">
+      <option value="">==배송 방식 선택==</option>
+      <option th:each="deliveryCode: ${deliveryCodes}" th:value="${deliveryCode.code}"
+              th:text="${deliveryCode.displayName}">FAST</option>
+    </select>
+  </div>
 </div> <!-- /container -->
 </body>
 </html>
