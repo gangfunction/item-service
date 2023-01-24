@@ -41,7 +41,7 @@ public class ValidationItemControllerV1 {
     }
 
     @PostMapping("/add")
-    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes,Model model) {
         Map<String, String> errors = new HashMap<>();
 
         if(!StringUtils.hasText(item.getItemName())){
@@ -56,13 +56,13 @@ public class ValidationItemControllerV1 {
             errors.put("quantity","수량은 9999까지입니다.");
         }
         if(item.getPrice() != null && item.getQuantity() != null){
-            int resultPrice = item.getPrice()*item.getQueantity();
+            int resultPrice = item.getPrice()*item.getQuantity();
             if(resultPrice<10000){
                 errors.put("resultPrice","가격 *수량의 합은 10,000원 이상이어야합니다. 현재 값 =" + resultPrice);
             }
         }
         if(!errors.isEmpty()){
-            item.addAttribute("errors",errors);
+            model.addAttribute("errors",errors);
             return "validation/v1/addForm";
         }
 
