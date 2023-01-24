@@ -18,9 +18,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/basic")
 public class BasicController {
-    @GetMapping("/items")
+    @GetMapping("/practice/lists")
     public String items(){
-        return "templates/basic/items";
+        return "practice/items";
     }
 
 
